@@ -17,5 +17,5 @@
 
 ## Showcase campaign
 - [ ] Recipe photos generated and shown in app screens
-- [ ] Screenshots captured with Cherry theme
+- [ ] Screenshots captured with Cherry theme in dark mode
 - [ ] 6-panel campaign page + PNG exports

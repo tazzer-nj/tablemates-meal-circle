@@ -1,1 +1,0 @@
-COMMENT ON TABLE public.recipes IS 'MealMates recipes catalog';

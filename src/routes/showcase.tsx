@@ -34,16 +34,16 @@ type Floater = { x: number; y: number; w: number; src: string; r: number; round?
 const FLOATERS: Floater[] = [
   { x: 780, y: 220, w: 230, src: "cut-tomato.png", r: -12 },
   { x: 1000, y: 1560, w: 300, src: "cut-basil.png", r: 18 },
-  { x: 2090, y: 260, w: 260, src: "cut-chili.png", r: 24 },
+  { x: 2050, y: 640, w: 240, src: "cut-chili.png", r: 24 },
   { x: 3170, y: 1520, w: 250, src: "cut-avocado.png", r: -18 },
   { x: 4250, y: 300, w: 200, src: "cut-lime.png", r: 30 },
-  { x: 5340, y: 1600, w: 240, src: "cut-tomato.png", r: 14 },
+  { x: 5300, y: 1330, w: 200, src: "cut-tomato.png", r: 14 },
   { x: 120, y: 1260, w: 360, src: "potjiekos.jpg", r: -8, round: true },
   { x: 1830, y: 1530, w: 300, src: "tacos.jpg", r: 10, round: true },
-  { x: 2660, y: 230, w: 260, src: "pancakes.jpg", r: -6, round: true },
+  { x: 2930, y: 300, w: 260, src: "pancakes.jpg", r: -6, round: true },
   { x: 3820, y: 1580, w: 300, src: "bowl.jpg", r: 6, round: true },
-  { x: 4920, y: 260, w: 250, src: "bunny.jpg", r: -10, round: true },
-  { x: 6080, y: 1520, w: 320, src: "alfredo.jpg", r: 8, round: true },
+  { x: 5230, y: 560, w: 250, src: "bunny.jpg", r: -10, round: true },
+  { x: 6200, y: 1260, w: 270, src: "alfredo.jpg", r: 8, round: true },
 ];
 
 function Phone({ src, style, w = 470, alt }: { src: string; style?: CSSProperties; w?: number; alt: string }) {
@@ -62,10 +62,6 @@ function Phone({ src, style, w = 470, alt }: { src: string; style?: CSSPropertie
       }}
     >
       <img src={src} alt={alt} width={w} height={h} className="block h-full w-full object-cover" style={{ borderRadius: w * 0.13 }} />
-      <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{ top: 24, width: w * 0.28, height: 30, borderRadius: 20, background: "var(--sc-ink)" }}
-      />
     </div>
   );
 }

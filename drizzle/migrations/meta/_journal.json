@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791754313952,
+      "tag": "0000_init_fresh_project",
+      "breakpoints": true
+    }
+  ]
 }

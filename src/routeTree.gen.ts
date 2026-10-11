@@ -31,6 +31,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RestaurantsRouteImport } from './routes/restaurants'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ShowcaseDiningRouteImport } from './routes/showcase-dining'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
@@ -152,6 +153,11 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseDiningRoute = ShowcaseDiningRouteImport.update({
+  id: '/showcase-dining',
+  path: '/showcase-dining',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -227,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/restaurants': typeof RestaurantsRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
+  '/showcase-dining': typeof ShowcaseDiningRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -261,6 +268,7 @@ export interface FileRoutesByTo {
   '/restaurants': typeof RestaurantsRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
+  '/showcase-dining': typeof ShowcaseDiningRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -296,6 +304,7 @@ export interface FileRoutesById {
   '/restaurants': typeof RestaurantsRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
+  '/showcase-dining': typeof ShowcaseDiningRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -332,6 +341,7 @@ export interface FileRouteTypes {
     | '/restaurants'
     | '/scan'
     | '/settings'
+    | '/showcase-dining'
     | '/support'
     | '/welcome'
     | '/auth/callback'
@@ -366,6 +376,7 @@ export interface FileRouteTypes {
     | '/restaurants'
     | '/scan'
     | '/settings'
+    | '/showcase-dining'
     | '/support'
     | '/welcome'
     | '/auth/callback'
@@ -400,6 +411,7 @@ export interface FileRouteTypes {
     | '/restaurants'
     | '/scan'
     | '/settings'
+    | '/showcase-dining'
     | '/support'
     | '/welcome'
     | '/auth/callback'
@@ -435,6 +447,7 @@ export interface RootRouteChildren {
   RestaurantsRoute: typeof RestaurantsRoute
   ScanRoute: typeof ScanRoute
   SettingsRoute: typeof SettingsRoute
+  ShowcaseDiningRoute: typeof ShowcaseDiningRoute
   SupportRoute: typeof SupportRoute
   WelcomeRoute: typeof WelcomeRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
@@ -601,6 +614,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase-dining': {
+      id: '/showcase-dining'
+      path: '/showcase-dining'
+      fullPath: '/showcase-dining'
+      preLoaderRoute: typeof ShowcaseDiningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -718,6 +738,7 @@ const rootRouteChildren: RootRouteChildren = {
   RestaurantsRoute: RestaurantsRoute,
   ScanRoute: ScanRoute,
   SettingsRoute: SettingsRoute,
+  ShowcaseDiningRoute: ShowcaseDiningRoute,
   SupportRoute: SupportRoute,
   WelcomeRoute: WelcomeRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,

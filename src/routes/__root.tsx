@@ -164,7 +164,7 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { user } = useSession();
   const isMarketplace =
-    pathname === "/restaurants" || pathname.startsWith("/restaurant/");
+    pathname === "/restaurants" || pathname === "/showcase-dining" || pathname.startsWith("/restaurant/");
   const isFlow = pathname === "/welcome" || pathname === "/onboarding" || pathname.startsWith("/auth");
   const showAppHeader = pathname !== "/" && !isMarketplace && !isFlow;
   useShellMetrics(showAppHeader ? "with-header" : "no-header");
@@ -206,6 +206,11 @@ function RootComponent() {
     });
     return () => sub.subscription.unsubscribe();
   }, [router, queryClient]);
+
+  // Marketing campaign page renders standalone, without app chrome.
+  if (pathname === "/showcase") {
+    return <Outlet />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

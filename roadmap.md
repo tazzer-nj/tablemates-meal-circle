@@ -16,6 +16,6 @@
 - [ ] Recipe image audit — blocked: no recipes in database until data is imported.
 
 ## Showcase campaign
-- [ ] Recipe photos generated and shown in app screens
-- [ ] Screenshots captured with Cherry theme in dark mode
-- [ ] 6-panel campaign page + PNG exports
+- [x] Recipe photos generated and shown in app screens
+- [x] Screenshots captured with Cherry theme in dark mode
+- [x] 6-panel campaign page + PNG exports

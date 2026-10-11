@@ -506,3 +506,12 @@ html[data-mascot="matcha"] .theme-backdrop::before {
 html[data-mascot]:not([data-mascot="classic"]) .theme-backdrop.bg-background { background-color: var(--background); }
 html[data-mascot]:not([data-mascot="classic"]) #app-scroll { background: transparent; }
 @media (prefers-reduced-motion: reduce) { .theme-backdrop::before { transition: none; } }
+
+/* Marketing showcase (fixed brand palette, independent of app theme) */
+.showcase-root {
+  --sc-ink: oklch(0.13 0 0);
+  --sc-paper: oklch(0.97 0.006 80);
+  --sc-mute: oklch(0.72 0 0);
+  --sc-accent: oklch(0.62 0.19 15);
+  --sc-shadow: 0 60px 90px -30px oklch(0 0 0 / 0.75), 0 20px 40px -20px oklch(0 0 0 / 0.6);
+}

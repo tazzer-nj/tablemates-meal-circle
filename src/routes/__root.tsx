@@ -208,7 +208,7 @@ function RootComponent() {
   }, [router, queryClient]);
 
   // Marketing campaign page renders standalone, without app chrome.
-  if (pathname === "/showcase") {
+  if (pathname === "/showcase" || pathname === "/showcase-instagram") {
     return <Outlet />;
   }
 

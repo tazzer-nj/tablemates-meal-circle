@@ -33,6 +33,7 @@ import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ShowcaseRouteImport } from './routes/showcase'
 import { Route as ShowcaseDiningRouteImport } from './routes/showcase-dining'
+import { Route as ShowcaseInstagramRouteImport } from './routes/showcase-instagram'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
@@ -164,6 +165,11 @@ const ShowcaseDiningRoute = ShowcaseDiningRouteImport.update({
   path: '/showcase-dining',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShowcaseInstagramRoute = ShowcaseInstagramRouteImport.update({
+  id: '/showcase-instagram',
+  path: '/showcase-instagram',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -241,6 +247,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/showcase': typeof ShowcaseRoute
   '/showcase-dining': typeof ShowcaseDiningRoute
+  '/showcase-instagram': typeof ShowcaseInstagramRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -277,6 +284,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/showcase': typeof ShowcaseRoute
   '/showcase-dining': typeof ShowcaseDiningRoute
+  '/showcase-instagram': typeof ShowcaseInstagramRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -314,6 +322,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/showcase': typeof ShowcaseRoute
   '/showcase-dining': typeof ShowcaseDiningRoute
+  '/showcase-instagram': typeof ShowcaseInstagramRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -352,6 +361,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/showcase'
     | '/showcase-dining'
+    | '/showcase-instagram'
     | '/support'
     | '/welcome'
     | '/auth/callback'
@@ -388,6 +398,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/showcase'
     | '/showcase-dining'
+    | '/showcase-instagram'
     | '/support'
     | '/welcome'
     | '/auth/callback'
@@ -424,6 +435,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/showcase'
     | '/showcase-dining'
+    | '/showcase-instagram'
     | '/support'
     | '/welcome'
     | '/auth/callback'
@@ -461,6 +473,7 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   ShowcaseRoute: typeof ShowcaseRoute
   ShowcaseDiningRoute: typeof ShowcaseDiningRoute
+  ShowcaseInstagramRoute: typeof ShowcaseInstagramRoute
   SupportRoute: typeof SupportRoute
   WelcomeRoute: typeof WelcomeRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
@@ -641,6 +654,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShowcaseDiningRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/showcase-instagram': {
+      id: '/showcase-instagram'
+      path: '/showcase-instagram'
+      fullPath: '/showcase-instagram'
+      preLoaderRoute: typeof ShowcaseInstagramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -760,6 +780,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   ShowcaseRoute: ShowcaseRoute,
   ShowcaseDiningRoute: ShowcaseDiningRoute,
+  ShowcaseInstagramRoute: ShowcaseInstagramRoute,
   SupportRoute: SupportRoute,
   WelcomeRoute: WelcomeRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,

@@ -139,11 +139,11 @@ const THEME_NAMES = ["Classic", "Sunset Kitchen", "Midnight", "Ocean", "Cherry",
 const THEME_IDS = ["classic", "sunset", "midnight", "ocean", "cherry", "matcha"];
 
 function ThemeCampaign() {
-  return <section data-themes className="showcase-root relative overflow-hidden" style={{ width: 2160, height: 1350, background: "var(--sc-ink)", color: "var(--sc-paper)" }}>
-    <header className="absolute left-[90px] top-[80px]"><p className="font-sans text-[24px] uppercase">MealMate / Six moods</p><h2 className="mt-5 font-display text-[110px] font-extrabold leading-none">Your flavour. Your theme.</h2></header>
+  return <section data-themes className="showcase-root relative overflow-hidden" style={{ width: 1080, height: 1350, background: "var(--sc-ink)", color: "var(--sc-paper)" }}>
+    <header className="absolute left-[70px] top-[60px]"><p className="font-sans text-[24px] uppercase">MealMate / Six moods</p><h2 className="mt-5 font-display text-[68px] font-extrabold leading-none">Your flavour.<br />Your theme.</h2></header>
     {THEME_IDS.map((id, i) => <div key={id}>
-      <Phone src={scr(`theme-${id}`)} alt={`Real MealMate Home in ${THEME_NAMES[i]} theme`} w={280} style={{ left: 90 + i * 330, top: 450 + (i % 2 ? -50 : 30), transform: `rotate(${i % 2 ? 5 : -5}deg)` }} />
-      <p className="absolute top-[1170px] w-[300px] text-center font-sans text-[26px] font-semibold" style={{ left: 90 + i * 330 }}>{THEME_NAMES[i]}</p>
+      <Phone src={scr(`theme-${id}`)} alt={`Real MealMate Dining in ${THEME_NAMES[i]} theme`} w={200} style={{ left: 90 + (i % 3) * 330, top: 300 + Math.floor(i / 3) * 500, transform: `rotate(${i % 2 ? 5 : -5}deg)` }} />
+      <p className="absolute w-[240px] text-center font-sans text-[26px] font-semibold" style={{ left: 70 + (i % 3) * 330, top: 760 + Math.floor(i / 3) * 500 }}>{THEME_NAMES[i]}</p>
     </div>)}
   </section>;
 }

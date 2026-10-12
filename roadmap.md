@@ -16,6 +16,9 @@
 - [ ] Recipe image audit — blocked: no recipes in database until data is imported.
 
 ## Showcase campaign
+- [ ] Match Dining to the selected theme and refresh campaign captures.
+- [ ] Add six real themed phones and an image gallery.
+- [ ] Add individual high-resolution PNG downloads and a three-post ZIP; verify exports.
 - [x] Recipe photos generated and shown in app screens
 - [x] Screenshots captured with Cherry theme in dark mode
 - [x] 6-panel campaign page + PNG exports

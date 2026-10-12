@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Download, Archive } from "lucide-react";
+import allImagesAsset from "@/assets/showcase/mealmate-all-images.zip.asset.json";
 
 const W = 1080;
 const H = 1350;
@@ -184,7 +185,7 @@ function InstagramShowcase() {
       <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-3">
         {[1, 2, 3, 4, 5, 6].map(n => <div key={n}><img src={`/showcase/exports/campaign-${n}.png`} alt={`MealMate launch campaign panel ${n}`} className="w-full" loading="lazy" /><div className="mt-3"><DownloadLink href={`/showcase/exports/campaign-${n}.png`}>Panel {n} · PNG</DownloadLink></div></div>)}
       </div>
-      <div className="mt-8 flex flex-wrap gap-3"><DownloadLink href="/showcase/exports/mealmate-all-images.zip" zip>All campaign images · ZIP</DownloadLink></div>
+      <div className="mt-8 flex flex-wrap gap-3"><DownloadLink href={allImagesAsset.url} zip>All campaign images · ZIP</DownloadLink></div>
       <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
         {["potjiekos.jpg", "tacos.jpg", "bowl.jpg", "bunny.jpg", "pancakes.jpg", "alfredo.jpg", "mia.png", "ingredients.png", "cut-tomato.png", "cut-chili.png", "cut-basil.png", "cut-avocado.png", "cut-lime.png"].map(name => <a key={name} href={S + name} download className="block"><img src={S + name} alt={name.replace(/\.(jpg|png)$/, "").replace("cut-", "")} className="aspect-square w-full object-contain" loading="lazy" /><span className="mt-2 flex items-center gap-2 text-sm"><Download size={14} />{name}</span></a>)}
       </div>

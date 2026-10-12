@@ -128,6 +128,27 @@
   background: linear-gradient(90deg, oklch(0.08 0.01 150 / 0.92), oklch(0.08 0.01 150 / 0.12));
 }
 
+/* Dining uses the same selected palette as the rest of MealMate. */
+html[data-mascot] .marketplace-dark {
+  --background: inherit;
+  --foreground: inherit;
+  --card: inherit;
+  --card-foreground: inherit;
+  --popover: inherit;
+  --popover-foreground: inherit;
+  --primary: inherit;
+  --primary-foreground: inherit;
+  --secondary: inherit;
+  --secondary-foreground: inherit;
+  --muted: inherit;
+  --muted-foreground: inherit;
+  --accent: inherit;
+  --accent-foreground: inherit;
+  --border: inherit;
+  --input: inherit;
+  --ring: inherit;
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }

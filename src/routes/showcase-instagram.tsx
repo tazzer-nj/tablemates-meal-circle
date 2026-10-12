@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { CSSProperties, ReactNode } from "react";
 import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Download, Archive } from "lucide-react";
+import allImagesAsset from "@/assets/showcase/mealmate-all-images.zip.asset.json";
 
 const W = 1080;
 const H = 1350;
 
 export const Route = createFileRoute("/showcase-instagram")({
-  validateSearch: z.object({ post: z.number().int().min(1).max(3).optional() }),
+  validateSearch: z.object({ post: z.number().int().min(1).max(3).optional(), themes: z.boolean().optional() }),
   head: () => ({
     meta: [
       { title: "MealMate Instagram Campaign | Posts" },
@@ -34,7 +37,7 @@ const FLOATERS: Floater[] = [
   { x: 980, y: 640, w: 200, src: "cut-tomato.png", r: -12 },
   { x: 30, y: 1050, w: 240, src: "cut-basil.png", r: 18 },
   { x: 1880, y: 1110, w: 210, src: "tacos.jpg", r: 10, round: true },
-  { x: 2060, y: 560, w: 230, src: "cut-chili.png", r: 28 },
+  { x: 2100, y: 1030, w: 150, src: "cut-chili.png", r: 28 },
   { x: 1180, y: 1120, w: 200, src: "cut-avocado.png", r: -18 },
   { x: 2240, y: 1120, w: 140, src: "cut-lime.png", r: 30 },
   { x: 3010, y: 1040, w: 210, src: "alfredo.jpg", r: 8, round: true },
@@ -74,13 +77,13 @@ function Post({ i, n, kicker, title, children }: { i: number; n: string; kicker:
         <path d={FLOW} fill="none" stroke="var(--sc-paper)" strokeOpacity="0.08" strokeWidth="50" strokeLinecap="round" />
         <path d={FLOW} fill="none" stroke="var(--sc-paper)" strokeWidth="4" strokeLinecap="round" />
       </svg>
-      <header className="absolute left-[70px] right-[70px] top-[70px] z-30">
+       <header className="absolute left-[70px] right-[70px] top-[70px] z-30">
         <div className="flex items-center gap-4 font-sans text-[22px] font-semibold uppercase tracking-[0.3em]" style={{ color: "var(--sc-mute)" }}>
           <span style={{ color: "var(--sc-paper)" }}>{n}</span>
           <span className="h-[2px] w-14" style={{ background: "var(--sc-mute)" }} />
           {kicker}
         </div>
-        <h2 className="mt-6 font-display text-[92px] font-extrabold uppercase leading-[0.9] tracking-[-0.03em]">{title}</h2>
+        <h2 className="mt-6 font-display text-[92px] font-extrabold uppercase leading-[0.9] tracking-normal">{title}</h2>
       </header>
       <div className="absolute inset-0 z-10">{children}</div>
       {FLOATERS.filter((f) => f.x + f.w > off - 40 && f.x < off + W + 40).map((f, k) => (
@@ -120,8 +123,8 @@ const POSTS = [
     <Phone alt="MealMate meal planner" src={scr("planner")} w={340} style={{ left: 360, top: 420, transform: "rotate(0deg)", zIndex: 5 }} />
   </Post>,
   <Post key={3} i={2} n="03" kicker="Your food sidekick" title={<>Your food life.<br />One app<Dot /></>}>
-    <Phone alt="MealMate dining" src={scr("dining")} w={270} style={{ left: 60, top: 560, transform: "rotate(-12deg)" }} />
-    <Phone alt="Mia, the MealMate AI chef" src={scr("chat")} w={340} style={{ left: 330, top: 420, zIndex: 5, transform: "rotate(3deg)" }} />
+     <Phone alt="MealMate dining" src={scr("dining")} w={250} style={{ left: 60, top: 520, transform: "rotate(-12deg)" }} />
+     <Phone alt="Mia, the MealMate AI chef" src={scr("chat")} w={320} style={{ left: 330, top: 410, zIndex: 5, transform: "rotate(3deg)" }} />
     <img src={S + "mia.png"} alt="Mia, the MealMate mascot" className="absolute z-20" style={{ left: 640, top: 780, width: 260, transform: "rotate(10deg)", filter: "drop-shadow(0 40px 40px oklch(0 0 0 / 0.6))" }} />
     <div className="absolute z-30 rounded-[32px] px-8 py-5 font-sans text-[28px] font-semibold" style={{ left: 640, top: 660, background: "var(--sc-paper)", color: "var(--sc-ink)", transform: "rotate(4deg)", boxShadow: "var(--sc-shadow)" }}>
       What's cooking, Chef?
@@ -133,8 +136,26 @@ const POSTS = [
   </Post>,
 ];
 
+const THEME_NAMES = ["Classic", "Sunset Kitchen", "Midnight", "Ocean", "Cherry", "Matcha"];
+const THEME_IDS = ["classic", "sunset", "midnight", "ocean", "cherry", "matcha"];
+
+function ThemeCampaign() {
+  return <section data-themes className="showcase-root relative overflow-hidden" style={{ width: 1080, height: 1350, background: "var(--sc-ink)", color: "var(--sc-paper)" }}>
+    <header className="absolute left-[70px] top-[60px]"><p className="font-sans text-[24px] uppercase">MealMate / Six moods</p><h2 className="mt-5 font-display text-[68px] font-extrabold leading-none">Your flavour.<br />Your theme.</h2></header>
+    {THEME_IDS.map((id, i) => <div key={id}>
+      <Phone src={scr(`theme-${id}`)} alt={`Real MealMate Dining in ${THEME_NAMES[i]} theme`} w={200} style={{ left: 90 + (i % 3) * 330, top: 300 + Math.floor(i / 3) * 500, transform: `rotate(${i % 2 ? 5 : -5}deg)` }} />
+      <p className="absolute w-[240px] text-center font-sans text-[26px] font-semibold" style={{ left: 70 + (i % 3) * 330, top: 760 + Math.floor(i / 3) * 500 }}>{THEME_NAMES[i]}</p>
+    </div>)}
+  </section>;
+}
+
+function DownloadLink({ href, children, zip = false }: { href: string; children: ReactNode; zip?: boolean }) {
+  return <Button asChild variant="outline"><a href={href} download>{zip ? <Archive /> : <Download />}{children}</a></Button>;
+}
+
 function InstagramShowcase() {
-  const { post } = Route.useSearch();
+  const { post, themes } = Route.useSearch();
+  if (themes) return <ThemeCampaign />;
   if (post) {
     return <div className="showcase-root" style={{ width: W, height: H }}>{POSTS[post - 1]}</div>;
   }
@@ -142,7 +163,6 @@ function InstagramShowcase() {
   return (
     <main className="showcase-root min-h-screen p-8" style={{ background: "var(--sc-paper)", color: "var(--sc-ink)" }}>
       <h1 className="font-display text-3xl font-bold">MealMate Instagram campaign</h1>
-      <p className="mt-1 text-sm" style={{ color: "oklch(0.45 0 0)" }}>Three connected 1080×1350 posts. Open a post for a full-size PNG export.</p>
       <div className="mt-6 overflow-x-auto pb-4">
         <div className="flex gap-[2px]" style={{ width: (W * scale + 2) * 3, height: H * scale }}>
           {POSTS.map((p, i) => (
@@ -153,11 +173,21 @@ function InstagramShowcase() {
         </div>
       </div>
       <div className="mt-6 flex flex-wrap gap-3">
+        <DownloadLink href="/showcase/exports/mealmate-instagram.zip" zip>Download all 3 posts · ZIP</DownloadLink>
         {[1, 2, 3].map((n) => (
-          <a key={n} href={`/showcase-instagram?post=${n}`} target="_blank" rel="noreferrer" className="rounded-full px-5 py-2 text-sm font-semibold" style={{ background: "var(--sc-ink)", color: "var(--sc-paper)" }}>
-            Open post {n} full size
-          </a>
+          <DownloadLink key={n} href={`/showcase/exports/instagram-${n}.png`}>Post {n} · PNG</DownloadLink>
         ))}
+      </div>
+      <h2 className="mt-14 font-display text-2xl font-bold">Six themes. One MealMate.</h2>
+      <a href="/showcase-instagram?themes=true" target="_blank" rel="noreferrer" className="mt-6 block"><img src="/showcase/exports/six-themes.png" alt="Six phones showing Classic, Sunset, Midnight, Ocean, Cherry and Matcha themes" className="w-full" /></a>
+      <div className="mt-4"><DownloadLink href="/showcase/exports/six-themes.png">Six themes · PNG</DownloadLink></div>
+      <h2 className="mt-14 font-display text-2xl font-bold">Campaign & image library</h2>
+      <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-3">
+        {[1, 2, 3, 4, 5, 6].map(n => <div key={n}><img src={`/showcase/exports/campaign-${n}.png`} alt={`MealMate launch campaign panel ${n}`} className="w-full" loading="lazy" /><div className="mt-3"><DownloadLink href={`/showcase/exports/campaign-${n}.png`}>Panel {n} · PNG</DownloadLink></div></div>)}
+      </div>
+      <div className="mt-8 flex flex-wrap gap-3"><DownloadLink href={allImagesAsset.url} zip>All campaign images · ZIP</DownloadLink></div>
+      <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
+        {["potjiekos.jpg", "tacos.jpg", "bowl.jpg", "bunny.jpg", "pancakes.jpg", "alfredo.jpg", "mia.png", "ingredients.png", "cut-tomato.png", "cut-chili.png", "cut-basil.png", "cut-avocado.png", "cut-lime.png"].map(name => <a key={name} href={S + name} download className="block"><img src={S + name} alt={name.replace(/\.(jpg|png)$/, "").replace("cut-", "")} className="aspect-square w-full object-contain" loading="lazy" /><span className="mt-2 flex items-center gap-2 text-sm"><Download size={14} />{name}</span></a>)}
       </div>
     </main>
   );

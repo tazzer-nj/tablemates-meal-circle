@@ -22,3 +22,8 @@
 - [x] Recipe photos generated and shown in app screens
 - [x] Screenshots captured with Cherry theme in dark mode
 - [x] 6-panel campaign page + PNG exports
+
+## iPhone promo set (Oct 2026)
+- [ ] Promo 1 — Herb-Roasted Chicken in iPhone frame ("YOUR NEXT FAVOURITE BITE.") — fix clipped subtitle, circular logo mask, add floating ingredient cutouts.
+- [ ] Promo 2 — best feature (Mia AI chef) in iPhone frame, tagline ending "on MealMate."
+- [ ] QA both promos visually, save to Files.

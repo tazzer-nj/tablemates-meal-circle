@@ -18,3 +18,4 @@
 - The shared bottom navigation always has exactly Home, Dining, AI Chef, Planner, and Profile; Pantry remains accessible through AI Chef.
 - Marketing campaign lives on /showcase (standalone, no app chrome) using real captured screens in public/showcase/screens; /showcase-dining previews the unreleased Dining screen. Why: keeps marketing separate from the live app.
 - Campaign PNG and ZIP downloads are pre-rendered static assets, refreshed together with source screen captures; this keeps exports exact-size and avoids browser rendering costs.
+- Global typography and control shape are defined by shared CSS tokens and shared UI variants; keeping them centralized makes future visual refreshes consistent across screens.

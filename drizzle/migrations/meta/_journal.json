@@ -8,6 +8,13 @@
       "when": 1791754313952,
       "tag": "0000_init_fresh_project",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794656787607,
+      "tag": "0001_tighten_selected_rls_policies",
+      "breakpoints": true
     }
   ]
 }

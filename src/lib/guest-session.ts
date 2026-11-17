@@ -8,7 +8,11 @@ export function ensureGuestSession(): Promise<Session> {
   if (!guestSessionPromise) {
     guestSessionPromise = (async () => {
       const { data: current } = await supabase.auth.getSession();
-      if (current.session) return current.session;
+      if (current.session?.user.is_anonymous) return current.session;
+      if (current.session) {
+        const { error: signOutError } = await supabase.auth.signOut();
+        if (signOutError) throw signOutError;
+      }
 
       const { data, error } = await supabase.auth.signInAnonymously();
       if (error) throw error;

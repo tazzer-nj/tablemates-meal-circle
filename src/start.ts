@@ -2,6 +2,12 @@ import { createStart, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+import { ensureGuestSession } from "@/lib/guest-session";
+
+const ensureGuestIdentity = createMiddleware({ type: "function" }).client(async ({ next }) => {
+  await ensureGuestSession();
+  return next();
+});
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -62,7 +68,7 @@ const securityHeadersMiddleware = createMiddleware().server(async ({ next }) => 
 });
 
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuth],
+  functionMiddleware: [ensureGuestIdentity, attachSupabaseAuth],
   requestMiddleware: [errorMiddleware, securityHeadersMiddleware],
 }));
 

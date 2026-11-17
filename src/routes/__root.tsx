@@ -16,8 +16,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { AppHeader } from "@/components/app-header";
 import { BottomNav } from "@/components/bottom-nav";
-
-import { AuthGate } from "@/components/auth-gate";
+import { GuestSessionGate } from "@/components/guest-session-gate";
 import { MascotThemeProvider } from "@/hooks/use-mascot-theme";
 import { THEME_BOOT_SCRIPT } from "@/lib/mascot-theme";
 import { Toaster } from "@/components/ui/sonner";
@@ -164,18 +163,18 @@ function RootComponent() {
   const { user } = useSession();
   const isMarketplace =
     pathname === "/restaurants" || pathname === "/showcase-dining" || pathname.startsWith("/restaurant/");
-  const isFlow = pathname === "/welcome" || pathname === "/onboarding" || pathname.startsWith("/auth");
+  const isFlow = pathname === "/welcome" || pathname === "/onboarding";
   const showAppHeader = pathname !== "/" && !isMarketplace && !isFlow;
   useShellMetrics(showAppHeader ? "with-header" : "no-header");
 
-  // First open (signed out): welcome + tour. Signed in without onboarding: personal setup.
+  // First open: welcome + tour. Guest preferences are set up locally.
   useEffect(() => {
-    if (user || pathname !== "/") return;
+    if (!user || pathname !== "/") return;
     if (!hasSeenTour()) void router.navigate({ to: "/welcome", replace: true });
   }, [pathname, router, user]);
 
   useEffect(() => {
-    if (!user || pathname === "/onboarding" || pathname.startsWith("/auth") || pathname === "/reset-password") return;
+    if (!user || pathname === "/onboarding") return;
     let active = true;
     supabase
       .from("profiles")
@@ -196,16 +195,6 @@ function RootComponent() {
     };
   }, [user, pathname, router]);
 
-  useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED")
-        return;
-      router.invalidate();
-      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
-    });
-    return () => sub.subscription.unsubscribe();
-  }, [router, queryClient]);
-
   // Marketing campaign page renders standalone, without app chrome.
   if (pathname === "/showcase" || pathname === "/showcase-instagram") {
     return <Outlet />;
@@ -225,11 +214,11 @@ function RootComponent() {
                 className="h-full overflow-y-auto overscroll-y-none pb-[var(--app-nav-h)] pt-[var(--app-header-h)]"
               >
                 <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col">
-                  <AuthGate>
+                  <GuestSessionGate>
                     <div key={pathname} className="page-enter motion-reveal flex flex-1 flex-col">
                       <Outlet />
                     </div>
-                  </AuthGate>
+                  </GuestSessionGate>
                 </div>
               </div>
               {pathname === "/onboarding" ? null : <BottomNav />}

@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CoachRouteImport } from './routes/coach'
@@ -27,7 +26,6 @@ import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as PremiumRouteImport } from './routes/premium'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RecipesRouteImport } from './routes/recipes'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RestaurantsRouteImport } from './routes/restaurants'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SettingsRouteImport } from './routes/settings'
@@ -36,7 +34,6 @@ import { Route as ShowcaseDiningRouteImport } from './routes/showcase-dining'
 import { Route as ShowcaseInstagramRouteImport } from './routes/showcase-instagram'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as WelcomeRouteImport } from './routes/welcome'
-import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as LegalTermsRouteImport } from './routes/legal.terms'
 import { Route as OrderIdRouteImport } from './routes/order.$id'
@@ -59,11 +56,6 @@ const AboutRoute = AboutRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -136,11 +128,6 @@ const RecipesRoute = RecipesRouteImport.update({
   path: '/recipes',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RestaurantsRoute = RestaurantsRouteImport.update({
   id: '/restaurants',
   path: '/restaurants',
@@ -180,11 +167,6 @@ const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
   path: '/welcome',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/callback',
-  path: '/callback',
-  getParentRoute: () => AuthRoute,
 } as any)
 const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
   id: '/legal/privacy',
@@ -233,7 +215,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
-  '/auth': typeof AuthRouteWithChildren
   '/chat': typeof ChatRoute
   '/checkout': typeof CheckoutRoute
   '/coach': typeof CoachRoute
@@ -248,7 +229,6 @@ export interface FileRoutesByFullPath {
   '/premium': typeof PremiumRoute
   '/profile': typeof ProfileRoute
   '/recipes': typeof RecipesRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/restaurants': typeof RestaurantsRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
@@ -257,7 +237,6 @@ export interface FileRoutesByFullPath {
   '/showcase-instagram': typeof ShowcaseInstagramRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
-  '/auth/callback': typeof AuthCallbackRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/order/$id': typeof OrderIdRoute
@@ -271,7 +250,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
-  '/auth': typeof AuthRouteWithChildren
   '/chat': typeof ChatRoute
   '/checkout': typeof CheckoutRoute
   '/coach': typeof CoachRoute
@@ -286,7 +264,6 @@ export interface FileRoutesByTo {
   '/premium': typeof PremiumRoute
   '/profile': typeof ProfileRoute
   '/recipes': typeof RecipesRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/restaurants': typeof RestaurantsRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
@@ -295,7 +272,6 @@ export interface FileRoutesByTo {
   '/showcase-instagram': typeof ShowcaseInstagramRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
-  '/auth/callback': typeof AuthCallbackRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/order/$id': typeof OrderIdRoute
@@ -310,7 +286,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
-  '/auth': typeof AuthRouteWithChildren
   '/chat': typeof ChatRoute
   '/checkout': typeof CheckoutRoute
   '/coach': typeof CoachRoute
@@ -325,7 +300,6 @@ export interface FileRoutesById {
   '/premium': typeof PremiumRoute
   '/profile': typeof ProfileRoute
   '/recipes': typeof RecipesRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/restaurants': typeof RestaurantsRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
@@ -334,7 +308,6 @@ export interface FileRoutesById {
   '/showcase-instagram': typeof ShowcaseInstagramRoute
   '/support': typeof SupportRoute
   '/welcome': typeof WelcomeRoute
-  '/auth/callback': typeof AuthCallbackRoute
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/order/$id': typeof OrderIdRoute
@@ -350,7 +323,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
-    | '/auth'
     | '/chat'
     | '/checkout'
     | '/coach'
@@ -365,7 +337,6 @@ export interface FileRouteTypes {
     | '/premium'
     | '/profile'
     | '/recipes'
-    | '/reset-password'
     | '/restaurants'
     | '/scan'
     | '/settings'
@@ -374,7 +345,6 @@ export interface FileRouteTypes {
     | '/showcase-instagram'
     | '/support'
     | '/welcome'
-    | '/auth/callback'
     | '/legal/privacy'
     | '/legal/terms'
     | '/order/$id'
@@ -388,7 +358,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
-    | '/auth'
     | '/chat'
     | '/checkout'
     | '/coach'
@@ -403,7 +372,6 @@ export interface FileRouteTypes {
     | '/premium'
     | '/profile'
     | '/recipes'
-    | '/reset-password'
     | '/restaurants'
     | '/scan'
     | '/settings'
@@ -412,7 +380,6 @@ export interface FileRouteTypes {
     | '/showcase-instagram'
     | '/support'
     | '/welcome'
-    | '/auth/callback'
     | '/legal/privacy'
     | '/legal/terms'
     | '/order/$id'
@@ -426,7 +393,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
-    | '/auth'
     | '/chat'
     | '/checkout'
     | '/coach'
@@ -441,7 +407,6 @@ export interface FileRouteTypes {
     | '/premium'
     | '/profile'
     | '/recipes'
-    | '/reset-password'
     | '/restaurants'
     | '/scan'
     | '/settings'
@@ -450,7 +415,6 @@ export interface FileRouteTypes {
     | '/showcase-instagram'
     | '/support'
     | '/welcome'
-    | '/auth/callback'
     | '/legal/privacy'
     | '/legal/terms'
     | '/order/$id'
@@ -465,7 +429,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
-  AuthRoute: typeof AuthRouteWithChildren
   ChatRoute: typeof ChatRoute
   CheckoutRoute: typeof CheckoutRoute
   CoachRoute: typeof CoachRoute
@@ -480,7 +443,6 @@ export interface RootRouteChildren {
   PremiumRoute: typeof PremiumRoute
   ProfileRoute: typeof ProfileRoute
   RecipesRoute: typeof RecipesRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
   RestaurantsRoute: typeof RestaurantsRoute
   ScanRoute: typeof ScanRoute
   SettingsRoute: typeof SettingsRoute
@@ -519,13 +481,6 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -626,13 +581,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RecipesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/restaurants': {
       id: '/restaurants'
       path: '/restaurants'
@@ -688,13 +636,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/welcome'
       preLoaderRoute: typeof WelcomeRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/auth/callback': {
-      id: '/auth/callback'
-      path: '/callback'
-      fullPath: '/auth/callback'
-      preLoaderRoute: typeof AuthCallbackRouteImport
-      parentRoute: typeof AuthRoute
     }
     '/legal/privacy': {
       id: '/legal/privacy'
@@ -755,16 +696,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AuthRouteChildren {
-  AuthCallbackRoute: typeof AuthCallbackRoute
-}
-
-const AuthRouteChildren: AuthRouteChildren = {
-  AuthCallbackRoute: AuthCallbackRoute,
-}
-
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
-
 interface PartnerRouteChildren {
   PartnerDashboardRoute: typeof PartnerDashboardRoute
 }
@@ -780,7 +711,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
-  AuthRoute: AuthRouteWithChildren,
   ChatRoute: ChatRoute,
   CheckoutRoute: CheckoutRoute,
   CoachRoute: CoachRoute,
@@ -795,7 +725,6 @@ const rootRouteChildren: RootRouteChildren = {
   PremiumRoute: PremiumRoute,
   ProfileRoute: ProfileRoute,
   RecipesRoute: RecipesRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
   RestaurantsRoute: RestaurantsRoute,
   ScanRoute: ScanRoute,
   SettingsRoute: SettingsRoute,
